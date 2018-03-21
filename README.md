@@ -27,3 +27,5 @@ text-fill-color（color）一般设置为transparent（透明色），利用back
 【补充】[打点loading动画效果](https://github.com/FanXuanyi/IFE/blob/master/CSS3/dot-loading.html)
 
 ## [CSS3实现3D轮播图](https://github.com/FanXuanyi/IFE/blob/master/CSS3/3d-carousel.html)
+
+## [懒加载](https://github.com/FanXuanyi/IFE/blob/master/LazyLoad/index.html)
