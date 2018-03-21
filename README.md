@@ -23,3 +23,7 @@ text-fill-color（color）一般设置为transparent（透明色），利用back
 - 圆饼和圆环的旋转：使用animation属性，使用transform设置旋转角度，使用transform-origin设置旋转中心。
 
 具体分析可以参考这篇[文章](http://ife.baidu.com/note/detail/id/1016)。
+
+【补充】[打点loading动画效果](https://github.com/FanXuanyi/IFE/blob/master/CSS3/dot-loading.html)
+
+## [CSS3实现3D轮播图](https://github.com/FanXuanyi/IFE/blob/master/CSS3/3d-carousel.html)
