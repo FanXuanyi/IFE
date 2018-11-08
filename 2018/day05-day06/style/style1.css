@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.total_title {
+    margin: 10px;
+}
+
+.section {
+    margin: 20px 10px;
+    width: 100%;
+}
+
+.sub_title {
+    margin-bottom: 10px;
+}
+
+ul li {
+    list-style: none;
+    float: left;
+    margin-right: 15px;
+}
+
+ul {
+    overflow: hidden;
+}
+
+.info_title {
+    font-weight: bold;
+}
+
+.info_part {
+    margin-bottom: 10px;
+}
+
+.info_point {
+    font-weight: bold;
+    display: block;
+}
