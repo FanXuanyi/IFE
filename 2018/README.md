@@ -95,6 +95,7 @@
 - [What methods of ‘clearfix’ can I use?](https://stackoverflow.com/questions/211383/what-methods-of-clearfix-can-i-use)
 - [清除浮动（clearfix hack）](http://zh.learnlayout.com/clearfix.html)
 - [编码规范](https://github.com/ecomfe/spec)
+<<<<<<< HEAD
 
 # 第七天到第八天：学习布局
 
