@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>三栏布局——左侧定宽，右侧定宽，中间自适应</title>
+	<style type="text/css">
+		.parent {
+			width: 100%;
+			height: 300px;
+			background: #ccc;
+		}
+		.left {
+			width: 150px;
+			height: 100%;
+			background: #2380a7;
+			float: left;
+		}
+		.center {
+			height: 100%;
+			background: #cd52dc;
+			margin-left: 150px;
+			margin-right: 150px;
+		}
+		.right {
+			width: 150px;
+			height: 100%;
+			background: #f01e4a;
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="parent">
+		<div class="left"></div>
+		<div class="right"></div>
+		<div class="center"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>两栏布局——右侧定宽，左侧自适应</title>
+	<style type="text/css">
+		.parent {
+			width: 100%;
+			height: 300px;
+			background: #ccc;
+		}
+		.left {
+			height: 100%;
+			background: #2380a7;
+			margin-right: 150px;
+		}
+		.right {
+			width: 150px;
+			height: 100%;
+			background: #f01e4a;
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<!-- 显示效果要在同一行的，如果其中不全为浮动元素，浮动元素要先写，不然会被未浮动的元素占据后再浮动，显示出来的效果就不在同一行了。 -->
+	<div class="parent">
+		<div class="right"></div>
+		<div class="left"></div>
+	</div>
+</body>
+</html>
