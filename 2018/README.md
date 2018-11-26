@@ -17,9 +17,8 @@
 
 阅读：
 
-[Web建站技术中，HTML、HTML5、XHTML、CSS、SQL、JavaScript、PHP、ASP.NET、Web Services是什么？](https://www.zhihu.com/question/22689579)
-
-[MDN Web开发入门](https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web)
+- [Web建站技术中，HTML、HTML5、XHTML、CSS、SQL、JavaScript、PHP、ASP.NET、Web Services是什么？](https://www.zhihu.com/question/22689579)
+- [MDN Web开发入门](https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web)
 
 # 第二天：给自己做一个在线简历吧
 
@@ -145,12 +144,12 @@
 
 需求：
 
-- 代码风格符合某种编码规范
-- 尽可能按照设计稿的尺寸进行实现
-- 设计稿中的图片或文字素材在实现时可以不一致
-- 充分应用上之前学习到的各种布局方式，尽可能几种方式都运用尝试一次，比较各种布局的适用场景
-- 设计稿中下方导师介绍图片，左上角灰色底表示，鼠标hover到图片上时的效果变化
-- 不需要考虑兼容IE浏览器
+- 代码风格符合某种编码规范。
+- 尽可能按照设计稿的尺寸进行实现。
+- 设计稿中的图片或文字素材在实现时可以不一致。
+- 充分应用上之前学习到的各种布局方式，尽可能几种方式都运用尝试一次，比较各种布局的适用场景。
+- 设计稿中下方导师介绍图片，左上角灰色底表示，鼠标hover到图片上时的效果变化。
+- 不需要考虑兼容IE浏览器。
 
 # 第十二天到第十五天：复杂页面实现
 
@@ -161,3 +160,426 @@
 - [W3C Visual formatting model](https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#q9.0)
 - [W3C Flexbox](https://www.w3.org/TR/2017/CR-css-flexbox-1-20171019/)
 - [怎么预览 GitHub 项目里的网页或 Demo？](https://www.zhihu.com/question/24156818)
+
+需求：
+
+- 最左侧一列要求自适应浏览器高度，左上面4个按钮相对浏览器左上角固定位置，左下方两个按钮相对浏览器左下角固定位置。
+- 左侧第二列（蓝色背景色）导航列固定宽度，高度也是自适应浏览器高度，最下面的Monthly Goals部分的内容相对浏览器下边固定位置。
+- 整个白色区域自适应宽度，右上方的人脸，名字部分相对浏览器右上角固定位置。
+- 白色区域左侧列固定宽度，右侧列自适应宽度
+
+# 第十六天 ，开始感受JS的乐趣
+
+目标：初步了解JavaScript/ECMAScript是什么。
+
+阅读：
+
+- [MDN 什么是JavaScript？](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/First_steps/What_is_JavaScript)
+- [一文读懂JavaScript和ECMAScript的区别](http://developer.51cto.com/art/201711/557514.htm)
+- [W3School JavaScript历史](http://www.w3school.com.cn/js/pro_js_history.asp)
+
+例子：
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+    <h1>Demo</h1>
+    <p id="content-wrapper">Hello World</p>
+    <script>
+        console.log(document.getElementById("content-wrapper").innerHTML);
+    </script>
+</body>
+</html>
+```
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+    <h1>Demo</h1>
+    <p id="content-wrapper">你是谁？</p>
+    <input id="name-input" type="text" placeholder="输入你的名字">
+    <button id="send-btn">发送</button>
+    <script>
+        document.getElementById("send-btn").onclick = function() {
+            document.getElementById("content-wrapper").innerHTML = 'Hello ' + document.getElementById("name-input").value;
+        }
+    </script>
+</body>
+</html>
+```
+
+需求（一）：
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+
+    </script>
+</body>
+</html>
+```
+
+- 点对应加减乘除按钮的时候。将两个输入框中的数字做对应的算术，并将结果显示在id为result的p标签内。
+- 暂时不做任何异常处理
+
+需求（二）：
+
+在之前做的简历中增加一些按钮，比如和你打招呼，点开看看我的特殊爱好，然后点了按钮以后，在Console或者某个节点来展示一段特殊内容。
+
+# 第十七天到第十八天，“如果可以”重来
+
+目标：继续学习JavaScript的一些基础知识，比如if如果判断，for循环等。
+
+阅读：
+
+- [if-else](http://www.w3school.com.cn/js/js_if_else.asp)
+- [如何存储你需要的信息 — 变量
+](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/First_steps/Variables)
+
+需求（一）：
+
+基于上一个任务中，关于加减乘除的任务，加上对于特殊情况的判断，比如判断两个输入框是否都是正常输入了数字类型的内容，比如除法的时候除数是否为0，当判断到输入有异常的时候，把错误信息提示到Console中。
+
+需求（二）：
+
+通过除2取余的方法来把十进制整数转化为二进制，基于下面代码，完成该转化算法，并实现页面交互。
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+    <script>
+		function dec2bin(decNumber) {
+		    // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+		}
+		// 实现当点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+		// Some coding
+    </script>
+</body>
+</html>
+```
+
+需求（三）：
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+    <script>
+		function dec2bin(decNumber) {
+		    // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+		    // 这里是上一个任务的实现
+		}
+		// 实现当点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+		// 新的需求是，转化显示后的二进制数为bin-bit中输入的数字宽度，例如
+		// dec-number为5，bin-bit为5，则转化后数字为00101
+		// 如果bin-bit小于转化后的二进制本身位数，则使用原本的位数，如dec-number为5，bin-bit为2，依然输出101，但同时在console中报个错
+		// Some coding
+    </script>
+</body>
+</html>
+```
+
+需求（四）：
+
+- 从1到100，以此在console输出各数字，但是，当数字为3的倍数或者含有3的时候，输出"PA"。
+- 比如：1,2,PA,4,5,PA,...,11,PA,PA,14,PA,......
+
+需求（五）：
+
+- 第一步：最低要求：在Console中按行输出 n * m = t
+- 然后，尝试在网页中，使用table来实现一个九九乘法表
+
+需求（六）：
+
+在你的简历中，实现一个，当用户访问页面的时候，根据当前时间，在页面中输出不同的问候语。
+比如早上的时候，输出早上好，晚上的时候是晚上好。
+
+# 第十九天：找到那个DOM
+
+目标：掌握JavaScript的核心之一：DOM，能够熟悉DOM相关操作，了解JavaScript事件机制。
+
+需求（一）：
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <div id="wrapper">
+        <div id="news-top" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>JS</span><a class="active" href="">Some Link2</a></li>
+                    <li><span>CSS</span><a href="">Some Link3</a></li>
+                    <li><span>JS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+        <div id="news-normal" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>HTML</span><a href="">Some Link2</a></li>
+                    <li><span>JS</span><a class="active" href="#">Some Link3</a></li>
+                    <li><span>CSS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>      
+    </div>
+    <script>
+
+    function getAllListItem() {
+        // 返回页面中所有li标签
+    }
+
+    function findAllHtmlSpanInOneSection(sectionId) {
+        // 返回某个section下所有span中内容为HTML的span标签
+    }
+
+    function findListItem(sectionId, spanCont) {
+        // 返回某个section下，所有所包含span内容为spanCont的LI标签
+    }
+
+    function getActiveLinkContent(sectionId) {
+        // 返回某个section下，class为active的链接中包含的文字内容
+    }
+
+    </script>
+</body>
+</html>
+```
+
+使用上述代码，分别实现script标签中的几个函数。
+在这个练习中仅允许使用以下DOM方法或属性（不得使用高级选择器）：
+
+- getElementById()
+- getElementsByTagName()
+- childNodes
+- parentNode
+
+阅读：
+
+- [MDN querySelectorAll](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll)
+- [MDN document.querySelctor](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/querySelector)
+- [MDN element.querySelector](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/querySelector)
+
+需求（二）：
+
+基于上面几个查找元素的练习，但是使用querySelector和querySelectorAll。
+
+# 第二十到第二十一天：让你和页面对话
+
+目标：
+
+- 掌握JavaScript事件的概念，并能写出基本的事件相关的代码。
+- 掌握如何通过JavaScript操作DOM的样式。
+
+阅读：
+
+- [W3School 事件](http://www.w3school.com.cn/js/js_htmldom_events.asp)
+- [MDN 事件](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events)
+- [HTML DOM Text 对象](http://www.w3school.com.cn/jsref/dom_obj_text.asp)
+- [HTML DOM Button 对象](http://www.w3school.com.cn/jsref/dom_obj_pushbutton.asp)
+
+需求（一）：
+
+```
+<input id="name" type="text">    
+<button id="submit-btn">Submit</button>
+```
+
+- 当点击按钮`submit-btn`时，在console中输出`name`中的内容。
+- 在输入过程中，如果按回车键，则同样执行上一条的需求。
+- 在输入过程中，如果按`ESC`键，则把输入框中的内容清空。
+
+阅读：
+
+- [W3School 样式](http://www.w3school.com.cn/js/js_htmldom_css.asp)
+- [W3School HTML DOM Style 对象](http://www.w3school.com.cn/jsref/dom_obj_style.asp)
+- [javascript 动态修改css样式方法汇总(四种方法)](https://www.cnblogs.com/aademeng/articles/6279060.html)
+- [cssText的用法以及特点](https://www.cnblogs.com/majingyi/p/6840818.html)
+- [JavaScript之ClassName属性学习](https://www.cnblogs.com/GreenLeaves/p/5757216.html)
+
+需求（二）：
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display: none;
+        }
+    </style>
+</head>
+<body>            
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">        
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+        <option>百度</option>
+        <option>爱奇艺</option>        
+    </select>
+</body>
+</html>
+```
+
+- 当用户选择了School的单选框时，显示School的下拉选项，隐藏Company的下拉选项。
+- 当用户选择了Company的单选框时，显示Company的下拉选项，隐藏School的下拉选项。
+
+阅读：
+
+- [初步理解JS的事件机制](https://www.cnblogs.com/lazychen/p/5664788.html)
+- [js中的事件委托或是事件代理详解](https://www.cnblogs.com/liugang-vip/p/5616484.html)
+- [关于JS事件冒泡与JS事件代理（事件委托）](https://blog.csdn.net/supercoooooder/article/details/52190100)
+- [JavaScript事件代理和委托](https://segmentfault.com/a/1190000002613617)
+
+需求（三）：
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        .palette {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .palette li {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>            
+    <ul class="palette">
+        <li style="background-color:crimson"></li>
+        <li style="background-color:bisque"></li>
+        <li style="background-color:blueviolet"></li>
+        <li style="background-color:coral"></li>
+        <li style="background-color:chartreuse"></li>
+        <li style="background-color:darkolivegreen"></li>
+        <li style="background-color:cyan"></li>
+        <li style="background-color:#194738"></li>        
+    </ul>
+
+    <p class="color-picker"></p>
+
+    <script>
+        var list = document.querySelectorAll("li");
+        for (var i = i = 0, len = list.length; i < len; i++) {
+            list[i].onclick = function(e) {
+                var t = e.target;
+                var c = t.style.backgroundColor;
+                var p = document.getElementsByClassName("color-picker")[0]
+                p.innerHTML = c;
+                p.style.color = c;
+
+            }
+        }
+    </script>
+</body>
+</html>
+```
+
+点击某一个li标签时，将li的背景色显示在p标签内，并将p标签中的文字颜色设置成li的背景色。
+
+阅读：
+
+- [W3School SetTimeout](http://www.w3school.com.cn/jsref/met_win_settimeout.asp)
+- [JS中setTimeout()的用法详解](https://www.jb51.net/article/35535.htm)
+- [W3School SetInterval](http://www.w3school.com.cn/jsref/met_win_setinterval.asp)
+- [js setInterval详解](https://www.cnblogs.com/everest33Tong/p/6322484.html)
+- [JavaScript中SetInterval与setTimeout的用法详解](https://www.jb51.net/article/74606.htm)
+
+需求（四）：
+
+```
+<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+<button id="fade-btn">淡出</button>
+```
+
+- 点击按钮时，开始改变fade-obj的透明度，开始一个淡出（逐渐消失）动画，直到透明度为0。
+- 在动画过程中，按钮状态变为不可点击。
+- 在动画结束后，按钮状态恢复，且文字变成“淡入”。
+- 在按钮显示“淡入”的状态时，点击按钮，开始一个“淡入”（逐渐出现）的动画，和上面类似按钮不可点，直到透明度完全不透明。
+- “淡入”动画结束后，按钮文字变为“淡出”。
+- 暂时不要使用CSS animation。
+
+阅读：
+
+- [浅谈CSS Sprite和实例解析](https://blog.csdn.net/u011349149/article/details/24181675)
+- [CSS 使用Sprites技术实现圆角效果](https://www.jb51.net/article/83111.htm)
+- [CSS Sprites:实用技术还是生厌之物？](https://www.zhangxinxu.com/wordpress/2010/03/翻译-css-sprites实用技术还是生厌之物？/)
+
+需求（五）:
+
+实现一个帧动画：基于一个[图片](http://ife.baidu.com/2016/static/img/erik_ce204002.jpg)，实现[IFE2016中Erik笑容的动画](http://ife.baidu.com/2016/static/index.html)。
