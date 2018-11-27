@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>帧动画</title>
+	<style type="text/css">
+		#erik {
+			width: 480px;
+			height: 480px;
+			background: url(erik_ce204002.jpg) no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<div id="erik"></div>
+	<script type="text/javascript">
+		window.onload = function() {
+			var erik = document.getElementById('erik');
+			var Y = 480;
+			setInterval(function() {
+				erik.style.backgroundPositionY = '-' + Y + 'px';
+				if (Y > 8160) {
+					Y = 480;
+				} else {
+					Y += 480;
+				}
+			}, 100);
+		};
+	</script>
+</body>
+</html>
