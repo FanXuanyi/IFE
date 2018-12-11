@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>day22-day24（七）</title>
+</head>
+<body>
+	<input id="stack-input" type="text">
+	<p id="stack-cont">栈内容：apple&gt;-pear</p>    
+	<button id="push-btn">进栈</button>
+	<button id="pop-btn">退栈</button>
+	<button id="font-btn">打印栈顶元素内容</button>
+	<button id="empty-btn">判断栈是否为空</button>
+
+	<script>
+		var stack = ["apple", "pear"];
+		var content = document.getElementById('stack-cont');
+		document.getElementById('push-btn').onclick = function() {
+			var item = document.getElementById('stack-input').value;
+			stack.push(item);
+			content.innerHTML = '栈内容：' + stack.join('-&gt;');
+		};
+		document.getElementById('pop-btn').onclick = function() {
+			stack.pop();
+			content.innerHTML = '栈内容：' + stack.join('-&gt;');
+		};
+		document.getElementById('font-btn').onclick = function() {
+			console.log(stack[stack.length - 1]);
+		};
+		document.getElementById('empty-btn').onclick = function() {
+			if (stack.length) {
+				console.log('栈不为空');
+			} else {
+				console.log('栈为空');
+			}
+		};
+	</script>
+</body>
+</html>

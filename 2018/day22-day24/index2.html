@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>String</title>
+</head>
+<body>
+	<div>
+	    <label>String A:
+	        <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+	    </label>
+	    <textarea id="str-a"></textarea>
+	    <label>String B:
+	        <input id="radio-b" type="radio" name="str-obj" value="b">
+	    </label>
+	    <textarea id="str-b"></textarea>        
+	    <label>Num A：<input id="num-a" type="number" value="0"></label>
+	    <label>Num B：<input id="num-b" type="number" value="1"></label>
+	</div>
+	<div>
+	    <button>获取当前选中输入的内容长度</button>
+	    <button>当前选中输入中的第3个字符</button>
+	    <button>把两个输入框的文字连接在一起输出（concat）</button>
+	    <button>输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+	    <button>输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+	    <button>使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+	    <button>当前选中输入框的行数</button>
+	    <button>使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+	    <button>把所选输入框中的内容全部转为大写</button>
+	    <button>把所选输入框中的内容全部转为小写</button>
+	    <button>把所选输入框中内容的半角空格全部去除</button>
+	    <button>把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+	</div>
+	<p id="result"></p>
+	<script type="text/javascript">
+		var btns = document.querySelectorAll('button');
+		var result = document.getElementById('result');
+		btns[0].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			if (radioa.checked) {
+				result.innerHTML = stringa.length;
+			}
+			if (radiob.checked) {
+				result.innerHTML = stringb.length;
+			}
+		};
+		btns[1].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			if (radioa.checked) {
+				result.innerHTML = stringa[2];
+			}
+			if (radiob.checked) {
+				result.innerHTML = stringb[2];
+			}
+		};
+		btns[2].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			result.innerHTML = stringa + stringb;
+		};
+		btns[3].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			var index = stringa.indexOf(stringb);
+			result.innerHTML = index !== -1 ? index + 1 : -1;
+		};
+		btns[4].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			var index = stringa.lastIndexOf(stringb);
+			result.innerHTML = index !== -1 ? index + 1 : -1;
+		};
+		btns[5].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			var numa = document.getElementById('num-a').value;
+			var numb = document.getElementById('num-b').value;
+			if (radioa.checked) {
+				result.innerHTML = stringa.slice(Number(numa), Number(numb));
+			}
+			if (radiob.checked) {
+				result.innerHTML = stringb.slice(Number(numa), Number(numb));
+			}
+		};
+		btns[6].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a');
+			var stringb = document.getElementById('str-b');
+			if (radioa.checked) {
+				result.innerHTML = stringa.rows;
+			}
+			if (radiob.checked) {
+				result.innerHTML = stringb.rows;
+			}
+		};
+		btns[7].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			var numa = document.getElementById('num-a').value;
+			var numb = document.getElementById('num-b').value;
+			if (radioa.checked) {
+				result.innerHTML = stringa.substr(Number(numa), Number(numb));
+			}
+			if (radiob.checked) {
+				result.innerHTML = stringb.substr(Number(numa), Number(numb));
+			}
+		};
+		btns[8].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			if (radioa.checked) {
+				result.innerHTML = stringa.toUpperCase();
+			}
+			if (radiob.checked) {
+				result.innerHTML = stringb.toUpperCase();
+			}
+		};
+		btns[9].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			if (radioa.checked) {
+				result.innerHTML = stringa.toLowerCase();
+			}
+			if (radiob.checked) {
+				result.innerHTML = stringb.toLowerCase();
+			}
+		};
+		btns[10].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			if (radioa.checked) {
+				result.innerHTML = stringa.trim();
+			}
+			if (radiob.checked) {
+				result.innerHTML = stringb.trim();
+			}
+		};
+		btns[11].onclick = function() {
+			var radioa = document.getElementById('radio-a');
+			var radiob = document.getElementById('radio-b');
+			var stringa = document.getElementById('str-a').value;
+			var stringb = document.getElementById('str-b').value;
+			if (radioa.checked) {
+				result.innerHTML = stringa.replace(/a/g, stringb);
+			}
+			if (radiob.checked) {
+				result.innerHTML = stringb.replace(/a/g, stringa);
+			}
+		};
+	</script>
+</body>
+</html>

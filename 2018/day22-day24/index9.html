@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>day22-day24（九）</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+		console.log(arr.sort(function(x, y) {
+			return y - x;
+		}));
+		
+		var arr = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+		var tmp = arr;
+		console.log(arr.sort());
+		console.log(tmp.sort().reverse());
+		
+		var arr = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+		console.log(arr.sort(function(x, y) {
+			return y[1] - x[1];
+		}));
+
+		var arr = [
+		    {
+		        id: 1,
+		        name: 'candy',
+		        value: 40
+		    }, {
+		        id: 2,
+		        name: 'Simon',
+		        value: 50
+		    }, {
+		        id: 3,
+		        name: 'Tony',
+		        value: 45
+		    }, {
+		        id: 4,
+		        name: 'Annie',
+		        value: 60
+		    }
+		];
+		console.log(arr.sort(function(x, y) {
+			return x.value - y.value;
+		}));
+	</script>
+</body>
+</html>

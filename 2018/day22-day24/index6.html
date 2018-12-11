@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>day22-day24（六）</title>
+</head>
+<body>
+	<input id="queue-input" type="text">
+	<p id="queue-cont">队列内容：apple&lt;-pear</p>    
+	<button id="in-btn">入队</button>
+	<button id="out-btn">出队</button>
+	<button id="font-btn">打印队头元素内容</button>
+	<button id="empty-btn">判断队列是否为空</button>
+
+	<script>
+
+		var queue = ["apple", "pear"];
+		var content = document.getElementById('queue-cont');
+		document.getElementById('in-btn').onclick = function() {
+			var item = document.getElementById('queue-input').value;
+			queue.push(item);
+			content.innerHTML = '队列内容：' + queue.join('&lt;-');
+		};
+		document.getElementById('out-btn').onclick = function() {
+			queue.shift();
+			content.innerHTML = '队列内容：' + queue.join('&lt;-');
+		};
+		document.getElementById('font-btn').onclick = function() {
+			console.log(queue[0]);
+		};
+		document.getElementById('empty-btn').onclick = function() {
+			if (queue.length) {
+				console.log('队列不为空');
+			} else {
+				console.log('队列为空');
+			}
+		};
+	</script>
+</body>
+</html>
