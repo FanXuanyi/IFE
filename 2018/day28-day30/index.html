@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>邮箱输入的提示功能</title>
+        <style type="text/css">
+        	.email-sug {
+        		list-style: none;
+        	}
+        </style>
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <input type="text" id="email-input" />
+            <ul id="email-sug-wrapper" class="email-sug"></ul>
+        </div>
+        <script type="text/javascript">
+        // 邮箱后缀
+        var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+        var email_input = document.getElementById('email-input');
+        var email_sug = document.getElementById('email-sug-wrapper');
+        // input DOM的输入监听
+        email_input.oninput = function() {
+            // 获取用户输入，生成提示框中的提示内容，将提示内容添加到email-sug-wrapper中
+            addSug(getInputVal());
+            // 控制mail-sug-wrapper的显示/隐藏状态
+            isShow(getInputVal());
+        }
+        // 获取用户的输入
+        function getInputVal() {
+            // 拿到input输入框的输入内容trim后返回
+            var value = email_input.value;
+            return value.trim();
+        }
+        // 生成提示框中的提示内容
+        function createSug(inputVal) {
+            // var lis = [];
+            var liStr = '';
+            var list = postfixList;
+            var index = inputVal.indexOf('@');
+            if (index !== -1) { // 当用户输入含有@符号时，选取用户输入的@前面的字符和后缀拼接
+                inputVal = inputVal.slice(0, index);
+            }
+            // 遍历postfixList
+            for (var i = 0; i < postfixList.length; i++) {
+                // 把用户输入和每一个postfix进行结合成为每一个li
+                var text = inputVal + '@' + postfixList[i];
+                // console.log(text);
+                // var li = document.createElement('li');
+                // li.appendChild(document.createTextNode(text));
+                // lis.push(li);
+                liStr += '<li>' + text + '</li>';
+            }
+            // 返回生成的提示内容
+            // return lis;
+            return liStr;
+        }
+        // 将提示内容添加到email-sug-wrapper中
+        function addSug(inputVal) {
+            // 获取生成提示框中的提示内容
+            var sug = createSug(inputVal);
+            // 将内容添加到email-sug-wrapper中
+            // 使用以下方法添加节点会保留之前的输入状态
+            // var ul = document.getElementById('email-sug-wrapper');
+            // for (var i = 0; i < sug.length; i++) {
+            //     ul.appendChild(sug[i]);
+            // }
+            email_sug.innerHTML = sug;
+        }
+        // 控制mail-sug-wrapper的显示/隐藏状态
+        function isShow(val) {
+            if (val == '') { // 如果用户输入为空，隐藏提示框
+                hideSug()
+            } else { // 否则，显示提示框
+                showSug()
+            }
+        }
+        // 隐藏提示框
+        function hideSug() {
+            email_sug.style.display = 'none';
+        }
+        // 显示提示框
+        function showSug() {
+            email_sug.style.display = 'block';
+        }
+        /*
+        未实现内容：
+        输入@之后出现相应的提示内容；
+        点击某个提示显示在输入框内；
+        样式显示。
+         */
+        </script>
+    </body>
+
+    </html>
