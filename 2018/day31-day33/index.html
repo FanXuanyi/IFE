@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>精明的小卖家（一）</title>
+	<style type="text/css">
+		table {
+			font-size: 11px;
+			color: #333;
+			border-width: 1px;
+			border-color: #666;
+			border-collapse: collapse;
+			text-align: center;
+		}
+		table th {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			background: #dedede;
+		}
+		table td {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			background: #fff;
+		}
+	</style>
+</head>
+<body>
+	<select id="region-select">
+		<option value="">请选择</option>
+		<option value="">华东</option>
+		<option value="">华南</option>
+		<option value="">华北</option>
+	</select>
+	<div id="table-wrapper">
+		<!-- <table>
+			<tr>
+				<th></th>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+		</table> -->
+	</div>
+	<script type="text/javascript" src="ife31data.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var region = document.getElementById('region-select');
+			var table = document.getElementById('table-wrapper');
+			var t = document.createElement('table');
+			table.appendChild(t);
+			// console.log(sourceData);
+			region.onchange = function () {
+				// console.log('change');
+				// 根据select选项获取数据渲染新的表格
+				renderTable(getData());
+			}
+			// 根据select选项获取数据
+			function getData() {
+				var index = region.selectedIndex; // 选中的index
+				var value = region.options[index].innerHTML;
+				// console.log(region.options[index].innerHTML);
+				var part = [];
+				for (var i = 0; i < sourceData.length; i++) {
+					if (value == sourceData[i].region) {
+						part.push(sourceData[i]);
+					}
+				}
+				return part;
+			}
+			// 渲染新的表格
+			function renderTable(data) {
+				// console.log(data);
+				// 输出表头：商品、地区、1月、2月、...、12月
+				var table_head = '';
+				table_head = '<th>' + '商品' + '</th>' + '<th>' + '地区' + '</th>'
+				for (var i = 1; i <= 12; i++) {
+					table_head += '<th>' + i + '月' + '</th>';
+				}
+				var content = '<tr>' + table_head + '</tr>';
+				// 遍历数据，输出每一行的表格HTML内容
+				for (var i = 0; i < data.length; i++) {
+					var text = '';
+					text += '<td>' + data[i].product + '</td>';
+					text += '<td>' + data[i].region + '</td>';
+					for (var j = 0; j < data[i].sale.length; j++) {
+						text += '<td>' + data[i].sale[j] + '</td>';
+					}
+					content += '<tr>' + text + '</tr>';
+				}
+				// 把生成的HTML内容赋给table-wrapper
+				t.innerHTML = content;
+			}
+		}
+	</script>
+</body>
+</html>

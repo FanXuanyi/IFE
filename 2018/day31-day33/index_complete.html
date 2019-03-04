@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>精明的小卖家（一）</title>
+	<style type="text/css">
+		table {
+			font-size: 11px;
+			color: #333;
+			border-width: 1px;
+			border-color: #666;
+			border-collapse: collapse;
+			text-align: center;
+		}
+		table th {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			background: #dedede;
+		}
+		table td {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			background: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="region-radio-wrapper">
+		<!-- <input type="checkbox" id="all-region">全选
+		<input type="checkbox" id="east">华东
+		<input type="checkbox" id="north">华北
+		<input type="checkbox" id="south">华南 -->
+	</div>
+	<div id="product-radio-wrapper">
+		<!-- <input type="checkbox" id="all_product">全选
+		<input type="checkbox" id="phone">手机
+		<input type="checkbox" id="laptop">笔记本
+		<input type="checkbox" id="sound">智能音箱 -->
+	</div>
+	<div id="table-wrapper"></div>
+	<script type="text/javascript" src="ife31data.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var region_check_arr = [{
+				id: 'east',
+				value: '华东'
+			}, {
+				id: 'north',
+				value: '华北'
+			}, {
+				id: 'south',
+				value: '华南'
+			}];
+			var product_check_arr = [{
+				id: 'phone',
+				value: '手机'
+			}, {
+				id: 'laptop',
+				value: '笔记本'
+			}, {
+				id: 'sound',
+				value: '智能音箱'
+			}];
+			var region_wrapper = document.getElementById('region-radio-wrapper');
+			var product_wrapper =  document.getElementById('product-radio-wrapper');
+			generateCheckBox(region_wrapper, region_check_arr);
+			generateCheckBox(product_wrapper, product_check_arr);
+			region_wrapper.addEventListener('click', showTable, false);
+			product_wrapper.addEventListener('click', showTable, false);
+			var table = document.getElementById('table-wrapper');
+			var t = document.createElement('table');
+			table.appendChild(t);
+			// 生成一组CheckBox
+			function generateCheckBox(wrapper, arr) {
+    			// 生成全选checkbox的html，给一个自定义属性表示为全选checkbox，比如checkbox-type="all"
+    			var sHtml = `<input type="checkbox" id="all">全选`;
+			    for (var i = 0; i < arr.length; i++) { // 遍历参数对象
+			    	// 生成各个子选项checkbox的html，给一个自定义属性表示为子选项
+			    	sHtml += `<input type="checkbox" id=${arr[i].id} value=${arr[i].value}>${arr[i].value}`;
+			    }
+			    // 容器innerHTML = 生成好的html集合
+			    wrapper.innerHTML = sHtml;
+
+			    var inputList = wrapper.getElementsByTagName('input');
+			    // 使用addEventListener不会被后面的相同事件覆盖
+			    wrapper.addEventListener('click', checkLogic, false);
+			    function checkLogic(e) {
+			    	var check_num = 0;
+			    	// console.log(e.target.id);
+			        if (e.target.id == 'all') { // 全选
+			        	for (var i = 0; i < inputList.length; i++) {
+			        		inputList[i].checked = true;
+			        	}
+			        } else { // 单选
+			        	for (var i = 1; i < inputList.length; i++) {
+			        		if (inputList[i].checked) {
+			        			check_num++;
+			        		}
+			        		if (check_num == 3) {
+			        			inputList[0].checked = true;
+			        		} else {
+			        			inputList[0].checked = false;
+			        		}
+			        	}
+			        }
+			    }
+			}
+			// 获取数据
+		    function getData(region, product) {
+		    	// console.log(region);
+		    	// console.log(product);
+			    // 遍历原始数据 {
+			    //     判断是否在商品维度 或者 地区维度的选中范围内 {
+			    //         添加到返回数据list中
+			    //     }
+			    // }
+			    var list = [];
+			    var temp = [];
+			    var region_arr = [];
+			    var product_arr = [];
+			    for (var i = 1; i < region.length; i++) {
+			    	if (region[i].checked == true) {
+			    		region_arr.push(region[i]);
+			    	}
+			    }
+			    // console.log(region_arr);
+			    for (var i = 1; i < product.length; i++) {
+			    	if (product[i].checked == true) {
+			    		product_arr.push(product[i]);
+			    	}
+			    }
+			    // console.log(product_arr);
+			    if (region_arr.length == 3 && product_arr.length == 3) { // 两边都全选
+			    	list = sourceData;
+			    } else {
+			    	for (var i = 0; i < region_arr.length; i++) {
+			    		for (var j = 0; j < sourceData.length; j++) {
+			    			if (region_arr[i].value == sourceData[j].region) {
+			    				temp.push(sourceData[j]);
+			    			}
+			    		}
+			    	}
+			    	// console.log(temp);
+			    	for (var i = 0; i < product_arr.length; i++) {
+			    		for (var j = 0; j < temp.length; j++) {
+			    			if (product_arr[i].value == temp[j].product) {
+			    				list.push(temp[j]);
+			    			}
+			    		}
+			    	}
+			    }
+			    // 返回数据
+			    return list;
+			}
+			// 渲染表单
+			function renderTable(data) {
+				// console.log(data);
+				if (data.length) {
+					var table_head = '';
+					table_head = '<th>' + '商品' + '</th>' + '<th>' + '地区' + '</th>'
+					for (var i = 1; i <= 12; i++) {
+						table_head += '<th>' + i + '月' + '</th>';
+					}
+					var content = '<tr>' + table_head + '</tr>';
+					for (var i = 0; i < data.length; i++) {
+						var text = '';
+						text += '<td>' + data[i].product + '</td>';
+						text += '<td>' + data[i].region + '</td>';
+						for (var j = 0; j < data[i].sale.length; j++) {
+							text += '<td>' + data[i].sale[j] + '</td>';
+						}
+						content += '<tr>' + text + '</tr>';
+					}
+					t.innerHTML = content;
+				}
+			}
+			// 显示表单
+			function showTable() {
+				var data = getData(region_wrapper.getElementsByTagName('input'), product_wrapper.getElementsByTagName('input'));
+				renderTable(data);
+			}
+		}
+	</script>
+</body>
+</html>
