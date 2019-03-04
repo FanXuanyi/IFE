@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>做一个简单的时钟</title>
+</head>
+<body>
+	<div id="clock1"></div>
+	<div id="clock2"></div>
+	<script type="text/javascript">
+		function checkTime(time) {
+			if (time < 10) {
+				time = '0' + time;
+			}
+			return time;
+		}
+		function formatter1(year, month, date, day, hour, minutes, seconds) {
+			var clock =  year + '年' + month + '月' + date + '日' + day + ' ' + checkTime(hour) + ':' + checkTime(minutes) + ':' + checkTime(seconds);
+			return clock;
+
+		}
+		function formatter2(year, month, date, day, hour, minutes, seconds) {
+			var clock =  year + '-' + month + '-' + date + ' ' + day + ' ' + checkTime(hour) + ':' + checkTime(minutes) + ':' + checkTime(seconds);
+			return clock;
+
+		}
+		function getClock() {
+			var week1 = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+			var week2 = ['Sunday', 'Monday', 'Tuesday', '星期三', 'Wednesday', 'Friday', 'Saturday']
+			var today = new Date();
+			var year = today.getFullYear();
+			var month = today.getMonth();
+			var date = today.getDate();
+			var day1 = week1[today.getDay()];
+			var day2 = week2[today.getDay()];
+			var hour = today.getHours();
+			var minutes = today.getMinutes();
+			var seconds = today.getSeconds();
+			document.getElementById('clock1').innerHTML = formatter1(year, month, date, day1, hour, minutes, seconds);
+			document.getElementById('clock2').innerHTML = formatter2(year, month, date, day2, hour, minutes, seconds);
+			setTimeout(getClock, 500);
+		}
+		window.onload = getClock();
+	</script>
+</body>
+</html>

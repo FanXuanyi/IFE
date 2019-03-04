@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>做一个简单的时钟</title>
+</head>
+<body>
+	<div id="clock"></div>
+	<script type="text/javascript">
+		function checkTime(time) {
+			if (time < 10) {
+				time = '0' + time;
+			}
+			return time;
+		}
+		function formatter(year, month, date, day, hour, minutes, seconds) {
+			var clock =  year + '-' + month + '-' + date + ' ' + day + ' ' + checkTime(hour) + ':' + checkTime(minutes) + ':' + checkTime(seconds);
+			return clock;
+
+		}
+		function getClock() {
+			var week = ['Sunday', 'Monday', 'Tuesday', '星期三', 'Wednesday', 'Friday', 'Saturday'];
+			var today = new Date();
+			var year = today.getFullYear();
+			var month = today.getMonth();
+			var date = today.getDate();
+			var day = week[today.getDay()];
+			var hour = today.getHours();
+			var minutes = today.getMinutes();
+			var seconds = today.getSeconds();
+			document.getElementById('clock').innerHTML = formatter(year, month, date, day, hour, minutes, seconds);
+			setTimeout(getClock, 500);
+		}
+		window.onload = getClock();
+	</script>
+</body>
+</html>

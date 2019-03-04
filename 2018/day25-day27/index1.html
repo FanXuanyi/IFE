@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Robot</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Go() {
+		    console.log("Go");
+		}
+
+		function GoSteps(n) {
+			var type = typeof n;
+			// console.log(type);
+			if (type === 'number') {
+				if (n >= 0) {
+			    	console.log('Go ' + Math.floor(n) + '次');
+			    } else {
+			    	console.log('Go 0次');
+			    }
+			} else if (type === 'boolean') {
+				if (n === true) {
+			    	console.log('Go 1次');
+			    	return;
+			    } else {
+			    	console.log('Go 0次');
+			    	return;
+			    }
+			} else if (type === 'undefined') {
+				console.log('Go 1次');
+			} else {
+				console.log('Go 0次');
+			}
+		}
+
+		GoSteps(10); // Go 10次
+		GoSteps(1); // Go 1次
+		GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+		GoSteps(0);  // 0次
+		GoSteps(-1);  // 0次
+		GoSteps(1.4);  // Go 1次
+		GoSteps(1.6);  // Go 1次
+		GoSteps(-1);  // 0次
+		GoSteps(true);  // Go 1次
+		GoSteps(false);  // 0次
+		GoSteps("Test");  // 0次
+		GoSteps(NaN);  // 0次
+		GoSteps(null);  // 0次
+	</script>
+</body>
+</html>
