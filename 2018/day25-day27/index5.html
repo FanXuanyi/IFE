@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>day25-day27</title>
+</head>
+<body>
+	<select id="year-select">
+	    <!-- <option value="2000">2000</option>
+	    <option value="2001">2001</option>
+	    <option value="2002">2002</option>
+	    ……
+	    <option value="2032">2002</option> -->
+	</select>
+
+	<select id="month-select">
+	  <!--   <option value="1">1</option>
+	    <option value="2">2</option>
+	    ……
+	    <option value="12">12</option> -->
+	</select>
+
+	<select id="day-select">
+	    <<!-- option value="1">1</option>
+	    <option value="2">2</option>
+	    ……
+	    <option value="31">31</option> -->
+	</select>
+
+	<select id="hour-select">
+	    <!-- <option value="0">00</option>
+	    <option value="1">01</option>        
+	    ……
+	    <option value="23">23</option> -->
+	</select>
+
+	<select id="minute-select">
+	    <!-- <option value="0">0</option>
+	    <option value="1">1</option>
+	    ……
+	    <option>59</option> -->
+	</select>
+
+	<select id="second-select">
+	   <!--  <option value="0">0</option>
+	    <option value="1">1</option>
+	    ……
+	    <option>59</option> -->
+	</select>
+
+	<p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+
+	<script type="text/javascript">
+		window.onload = function() {
+			// 定义全局定时器
+			var timer = null;
+			// 年份
+			var yearSelect = document.getElementById('year-select');
+			var yearSelectText = '';
+			for (var i = 1900; i < 2031; i++) {
+				yearSelectText += '<option value=' + i + '>' + i + '</option>';
+			}
+			yearSelect.innerHTML = yearSelectText;
+			// 月份
+			var monthSelect = document.getElementById('month-select');
+			var monthSelectText = '';
+			for (var i = 1; i < 13; i++) {
+				monthSelectText += '<option value=' + i + '>' + i + '</option>';
+			}
+			monthSelect.innerHTML = monthSelectText;
+			// 日期
+			var daySelect = document.getElementById('day-select');
+			var daySelectText = '';
+			for (var i = 1; i < 32; i++) {
+				daySelectText += '<option value=' + i + '>' + i + '</option>';
+			}
+			daySelect.innerHTML = daySelectText;
+			// 小时
+			var hourSelect = document.getElementById('hour-select');
+			var hourSelectText = '';
+			for (var i = 0; i < 24; i++) {
+				hourSelectText += '<option value=' + i + '>' + i + '</option>';
+			}
+			hourSelect.innerHTML = hourSelectText;
+			// 分钟
+			var minuteSelect = document.getElementById('minute-select');
+			var minuteSelectText = '';
+			for (var i = 0; i < 60; i++) {
+				minuteSelectText += '<option value=' + i + '>' + i + '</option>';
+			}
+			minuteSelect.innerHTML = minuteSelectText;
+			// 秒
+			var secondSelect = document.getElementById('second-select');
+			var secondSelectText = '';
+			for (var i = 0; i < 60; i++) {
+				secondSelectText += '<option value=' + i + '>' + i + '</option>';
+			}
+			secondSelect.innerHTML = secondSelectText;
+			// 结果容器
+			var resultWrapper = document.getElementById('result-wrapper');
+
+			yearSelect.addEventListener('change', show, false);
+			monthSelect.addEventListener('change', show, false);
+			yearSelect.addEventListener('change', getTime, false);
+			monthSelect.addEventListener('change', getTime, false);
+			daySelect.addEventListener('change', getTime, false);
+			hourSelect.addEventListener('change', getTime, false);
+			minuteSelect.addEventListener('change', getTime, false);
+			secondSelect.addEventListener('change', getTime, false);
+
+			// 选择年份、月份显示相应的天数
+			function show() {
+				var curYear = parseInt(yearSelect.value); // 当前选中年份
+				// console.log(curYear);
+				var curMonth = parseInt(monthSelect.value); // 当前选中月份
+				var daySelectText1 = '';
+				for (var i = 1; i < 32; i++) {
+					daySelectText1 += '<option value=' + i + '>' + i + '</option>';
+				}
+				var daySelectText2 = '';
+				for (var i = 1; i < 31; i++) {
+					daySelectText2 += '<option value=' + i + '>' + i + '</option>';
+				}
+				var daySelectText3 = '';
+				for (var i = 1; i < 30; i++) {
+					daySelectText3 += '<option value=' + i + '>' + i + '</option>';
+				}
+				var daySelectText4 = '';
+				for (var i = 1; i < 29; i++) {
+					daySelectText4 += '<option value=' + i + '>' + i + '</option>';
+				}
+				if (curMonth == 2) {
+					if (curYear % 400 == 0 || (curYear % 4 == 0 && curYear % 100 != 0)) { // 判断是否是闰年
+						daySelect.innerHTML = daySelectText3;
+					} else {
+						daySelect.innerHTML = daySelectText4;
+					}
+				} else if ((curMonth <= 7 && curMonth % 2 == 1) || (curMonth > 7 && curMonth % 2 == 0)) {
+					daySelect.innerHTML = daySelectText1;
+				} else {
+					daySelect.innerHTML = daySelectText2;
+				}
+			}
+
+			// 显示时间
+			function getTime() {
+				var selectYear = parseInt(yearSelect.value); // 当前选中年份
+				var selectMonth = parseInt(monthSelect.value); // 当前选中月份
+				var selectDay = parseInt(daySelect.value); // 当前选中日期
+				var selectHour = parseInt(hourSelect.value); // 当前选中小时
+				var selectMinute = parseInt(minuteSelect.value); // 当前选中分钟
+				var selectSecond = parseInt(secondSelect.value); // 当前选中秒钟
+				var selectStr = selectYear + '年' + selectMonth + '月' + selectDay + '日' + caculateWeek(selectYear, selectMonth, selectDay) + ' ' + formate(selectHour) + ':' + formate(selectMinute) + ':' + formate(selectSecond);
+				clearInterval(timer);
+				timer = setInterval(function() { // 设置定时器，来更新时间
+					// 当前选中时间减去当前时间
+					var sub_time = new Date(selectYear, selectMonth - 1, selectDay, selectHour, selectMinute, selectSecond) - new Date();
+					// console.log(sub_time);
+					var sub_day = Math.abs(parseInt(sub_time / 1000 / 60 / 60 / 24, 10)); // 剩余天数
+					var sub_hour = Math.abs(parseInt(sub_time / 1000 / 60 / 60 % 24, 10)); // 剩余小时
+					var sub_minute = Math.abs(parseInt(sub_time / 1000 / 60 % 60, 10)); // 剩余分钟
+					var sub_second = Math.abs(parseInt(sub_time / 1000 % 60, 10)); // 剩余秒数
+					if (Math.abs(sub_time) <= 100) {
+						resultWrapper.innerHTML = '就是现在';
+					} else if (sub_time > 100) {
+						resultWrapper.innerHTML = '现在距离 ' + selectStr + '还有' + sub_day + '天' + sub_hour + '小时' + sub_minute + '分' + sub_second + '秒';
+					} else {
+						resultWrapper.innerHTML = '现在距离 ' + selectStr + '已经过去' + sub_day + '天' + sub_hour + '小时' + sub_minute + '分' + sub_second + '秒';
+					}
+				}, 1000);
+			}
+			// 计算星期
+			function caculateWeek(year, month, day) {
+				var totalDays = 0;
+				for (var i = 1900; i < year; i++) {
+					if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0)) {
+						totalDays += 366;
+					} else {
+						totalDays += 365;
+					}
+				}
+				var isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) ? true : false; // 是否是闰年
+				switch(month - 1) {
+					case 11:
+						totalDays += 30;
+					case 10:
+						totalDays += 31;
+					case 9:
+						totalDays += 30;
+					case 8:
+						totalDays += 31;
+					case 7:
+						totalDays += 31;
+					case 6:
+						totalDays += 30;
+					case 5:
+						totalDays += 31;
+					case 4:
+						totalDays += 30;
+					case 3:
+						totalDays += 31;
+					case 2:
+						isLeap ? totalDays += 29 : totalDays += 28;
+					case 1:
+						totalDays += 31;
+				}
+				totalDays += day;
+				var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+				var week = weeks[totalDays % 7];
+				return week;
+			}
+
+			// 格式化
+			function formate(n) {
+				var result;
+				if (n < 10) {
+					result = '0' + n;
+				} else {
+					result = n;
+				}
+				return result;
+			}
+		};
+	</script>
+</body>
+</html>
